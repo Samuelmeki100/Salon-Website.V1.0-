@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <p>jboihbojhbojhbojhb</p>
+        <?php
+        
+        echo "whic in here";
+            $connect = new mysqli('localhost', 'root', '', 'globalstyling') or die('failed to access database'); //connecting to databas
+           // this creates the user table
+            $queryUser = 'CREATE TABLE `user` (
+            `ID` int(11) NOT NULL AUTO_INCREMENT,
+            `user_ID` varchar(25) NOT NULL ,
+            `user_Number` varchar(15) NOT NULL,
+            `user_Email` varchar(100) NOT NULL,
+            `user_Password` varchar(100) NOT NULL,
+             PRIMARY KEY (`ID`))';
+            
+            if($connect->query($queryUser))
+            {
+                echo 'user table created';
+            }
+            else{
+                echo "error in connecting tables".mysql_error();
+            }
+            
+            //creates the salon table
+            $querySalon = 'CREATE TABLE `salon` (
+            `salon_location` int(15) NOT NULL,
+            `ID` int(15) NOT NULL AUTO_INCREMENT,
+            `salon_country_code` int(3) NOT NULL,
+             PRIMARY KEY (`ID`))';
+            
+            if ($connect->query($querySalon) )
+            {
+                echo 'salon table created';
+            }
+            
+            //creates the hair styles table
+            $queryStyle = 'CREATE TABLE `hair_style` (
+            `hair_style_name` varchar(15) NOT NULL,
+            `ID` INT(15) NOT NULL AUTO_INCREMENT,
+            `hair_style_code` varchar(15) NOT NULL,
+            `hair_style_price` int(15) NOT NULL,
+            PRIMARY KEY (`ID`))';
+                         
+            if ($connect->query($queryStyle) )
+            {
+                echo 'hair stle table created';
+            }                 
+            
+            //creates table for hair treatment
+              $queryTreatment = 'CREATE TABLE `hair_treatment` (
+            `hair_treatment_name` varchar(15) NOT NULL,
+            `ID` INT(15) NOT NULL AUTO_INCREMENT,
+            `hair_treatment_code` varchar(15) NOT NULL,
+            `hair_treatment_price` int(15) NOT NULL,
+            PRIMARY KEY (`ID`))';
+              
+                 if ($connect->query($queryTreatment) )
+            {
+                echo 'hair treatment table created';
+            } 
+            
+            
+           // creates the table for booked appointments that needs treatments
+            $queryTreatmentAppoint= 'CREATE TABLE `hair_treatment_booked_appointment` (
+            `hair_style_treatment_code` varchar(15) NOT NULL,
+            `date_of_appointment` varchar(15) NOT NULL,
+            `ID` INT(15) NOT NULL AUTO_INCREMENT,
+            `user_name` varchar(15) NOT NULL,
+            `booking_type` int(11) NOT NULL,
+            `loction_id` varchar(15) NOT NULL,
+            PRIMARY KEY (`ID`))';    
+            
+              if ($connect->query($queryTreatmentAppoint) )
+            {
+                echo 'hair booked treatment table created';
+            } 
+            
+            //creates table for creaating booked hair style 
+           //$queryStyeAppoint= ' CREATE TABLE `hair_Style_booked_appointment` (
+            //`hair_booked_appointment_code` int(15) NOT NULL,
+            //`hair_style_name` varchar(15) NOT NULL,
+            //`use_name` varchar(15) NOT NULL,
+            //`date_of_appointment` varchar(15) NOT NULL,
+            //PRIMARY KEY (`hair_booked_appointment_code`))';
+           
+           if ($connect->query($queryStyeAppoint))
+           {
+               echo 'hair booked style  booked appointment';
+               
+           }
+           
+           
+            
+
+           
+            
+            
+        ?>
+    </body>
+</html>
